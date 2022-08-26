@@ -27,6 +27,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $token = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $create_time = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $update_time = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,5 +107,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCreateTime(): ?string
+    {
+        return $this->create_time;
+    }
+
+    public function setCreateTime(string $create_time): self
+    {
+        $this->create_time = $create_time;
+
+        return $this;
+    }
+
+    public function getUpdateTime(): ?string
+    {
+        return $this->update_time;
+    }
+
+    public function setUpdateTime(string $update_time): self
+    {
+        $this->update_time = $update_time;
+
+        return $this;
     }
 }

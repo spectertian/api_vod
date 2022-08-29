@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use PhpParser\Parser\Tokens;
 
 class UserFixtures extends Fixture
 {
@@ -14,12 +15,11 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
 
         $user = new User();
-        $user->setUuid();
-        $user->setPassword();
-        $user->setEmail();
-        $user->setEmail();
+        $user->setUuid(1);
+        $user->setPassword(456);
+        $user->setEmail('test.com');
+        $user->setToken(Tokens::T_ARRAY_CAST);
         $manager->persist($user);
-
 
         $manager->flush();
     }

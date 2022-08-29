@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,6 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $update_time = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $updated_time = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $created_time = null;
 
     public function getId(): ?int
     {
@@ -153,6 +160,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdateTime(string $update_time): self
     {
         $this->update_time = $update_time;
+
+        return $this;
+    }
+
+    public function getUpdatedTime(): ?\DateTimeInterface
+    {
+        return $this->updated_time;
+    }
+
+    public function setUpdatedTime(\DateTimeInterface $updated_time): self
+    {
+        $this->updated_time = $updated_time;
+
+        return $this;
+    }
+
+    public function getCreatedTime(): ?\DateTimeInterface
+    {
+        return $this->created_time;
+    }
+
+    public function setCreatedTime(\DateTimeInterface $created_time): self
+    {
+        $this->created_time = $created_time;
 
         return $this;
     }

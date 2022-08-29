@@ -13,10 +13,13 @@ class UserFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
-        $user  = new User();
+        $user = new User();
         $user->setUuid();
         $user->setPassword();
-        $user->setRoles();
+        $user->setEmail();
+        $user->setEmail();
+        $manager->persist($user);
+
 
         $manager->flush();
     }

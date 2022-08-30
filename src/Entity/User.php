@@ -34,17 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $create_time = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $update_time = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $updated_time = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $created_time = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $deleted_time = null;
 
     public function getId(): ?int
     {
@@ -140,30 +137,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreateTime(): ?string
-    {
-        return $this->create_time;
-    }
-
-    public function setCreateTime(string $create_time): self
-    {
-        $this->create_time = $create_time;
-
-        return $this;
-    }
-
-    public function getUpdateTime(): ?string
-    {
-        return $this->update_time;
-    }
-
-    public function setUpdateTime(string $update_time): self
-    {
-        $this->update_time = $update_time;
-
-        return $this;
-    }
-
     public function getUpdatedTime(): ?\DateTimeInterface
     {
         return $this->updated_time;
@@ -184,6 +157,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedTime(\DateTimeInterface $created_time): self
     {
         $this->created_time = $created_time;
+
+        return $this;
+    }
+
+    public function getDeletedTime(): ?\DateTimeInterface
+    {
+        return $this->deleted_time;
+    }
+
+    public function setDeletedTime(\DateTimeInterface $deleted_time): self
+    {
+        $this->deleted_time = $deleted_time;
 
         return $this;
     }
